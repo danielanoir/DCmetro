@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "hbs": "^4.0.0"
+    "express-handlebars": "^3.0.0",
+    "hbs": "^4.0.0",
+    "tedious": "^1.14.0"
   }
 }

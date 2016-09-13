@@ -2,23 +2,28 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var config = require('../config/uber_config');
-// var Connection = require('tedious').Connection;
-// var Request = require('tedious').Request;
-// var TYPES = require('tedious').TYPES;
+var Connection = require('tedious').Connection;
+var Request = require('tedious').Request;
+var TYPES = require('tedious').TYPES;
 var data = new String();
 var json = new Object();
-// var connection = new Connection(config.db)
-var hbs = require("hbs");
-// var hbs = require('handlebars');
-
-// connection.on('connect', function(err) {
-//   console.log("Connected");
-// });
+var connection = new Connection(config.db)
+var hbs = require("express-handlebars");
 
 app.set("view engine", "hbs");
+app.engine(".hbs", hbs({
+  extname:        ".hbs",
+  partialsDir:    "views/",
+  layoutsDir:     "views/",
+  defaultLayout:  "index"
+}));
 
-app.get("/index", function(req, res){
-  res.render("index.hbs");
+app.listen(5000, function() {
+  console.log("listening on 5000");
+});
+
+connection.on('connect', function(err) {
+  console.log("Connected");
 });
 
 app.use(function(req, res, next) {
@@ -27,11 +32,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-http.listen(5000, function() {
-  console.log("listening on 5000");
-});
-
-app.get("/coordinates", function(req, res){
+app.get("/index", function(req, res){
+  res.render("index");
   connection = new Connection(config.db);
   connection.on('connect', function(err) {
       console.log("Connected for GET");
@@ -40,7 +42,6 @@ app.get("/coordinates", function(req, res){
     });
   });
 });
-
 
 function getSqlData(connection, callback) {
   var sql = "select station, x, y from mtr.coordinates for json path"
