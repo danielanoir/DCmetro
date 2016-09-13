@@ -1,46 +1,60 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var config = require('../config/uber_config');
 var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
+var data = new String();
+var json = new Object();
+var connection = new Connection(config.db)
 
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+connection.on('connect', function(err) {
+  console.log("Connected");
 });
 
-http.listen(3000, function() {
-  console.log("listening on 3000");
+app.set("view engine", "hbs");
+
+app.get("/index", function(req, res){
+  res.render("views/index.hbs");
 })
 
-var connection = new Connection(config.db);
-connection.on('connect', function(err) {
-// If no error, then good to proceed.
-   console.log("Connected");
-   // testInsert();
-   testSelect();
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
-  function testSelect() {
-    request = new Request("select * from ubr.person", function(err) {
-    if (err) {
-        console.log(err);}
-    });
-    var result = "";
-    request.on('row', function(columns) {
-        columns.forEach(function(column) {
-          if (column.value === null) {
-            console.log('NULL');
-          } else {
-            result+= column.value + " ";
-          }
-        });
-        console.log(result);
-        result ="";
-    });
+http.listen(5000, function() {
+  console.log("listening on 5000");
+});
 
-    request.on('done', function(rowCount, more) {
-    console.log(rowCount + ' rows returned');
+app.get("/coordinates", function(req, res){
+  connection = new Connection(config.db);
+  connection.on('connect', function(err) {
+      console.log("Connected for GET");
+        getSqlData(connection, function(err, json) {
+      res.send(json);
     });
-    connection.execSql(request);
-  }
+  });
+});
+
+
+function getSqlData(connection, callback) {
+  var sql = "select station, x, y from mtr.coordinates for json path"
+  var request = new Request(sql, function(err, rowCount) {
+    if (err) {
+      return callback(err);
+    }
+    json = JSON.parse(data);
+    callback(null, json)
+    json = {};
+    connection.close();
+  });
+  request.on('row', function(columns) {
+      columns.forEach(function(column) {
+          data += column.value;
+      });
+  });
+connection.execSql(request);
+}
