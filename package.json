@@ -9,10 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-=======
-    "express-handlebars": "^3.0.0",
->>>>>>> 7eab7b74b0201d5f1114349e668f715a0ca85982
     "hbs": "^4.0.0",
     "tedious": "^1.14.0"
   }
