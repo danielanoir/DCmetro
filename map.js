@@ -1,19 +1,43 @@
 $(document).ready(function() {
 
-console.log("hi");
-var data = [[5,3], [10,17], [15,4], [2,8]];
+function printMousePos(event) {
+  document.body.textContent =
+    "clientX: " + event.clientX +
+    " - clientY: " + event.clientY;
+}
+document.addEventListener("click", printMousePos);
 
-    var margin = {top: 20, right: 15, bottom: 60, left: 60}
-      , width = 960 - margin.left - margin.right
-      , height = 500 - margin.top - margin.bottom;
+data = [
+  //red line starting at Shady Grove
+[322, 130], [356 ,162], [388, 198], [420, 232], [454, 265], [489, 300], [526, 332], [556, 366], [582, 384], [613, 387], [633, 407], [656, 432], [682, 455], [700, 486], [765, 590], [855, 594], [914, 591], [979, 566], [978, 526], [978, 486], [978, 449], [900, 354], [814, 268], [800, 176], [800, 138], [797, 103], [800, 65],
+//yellow and green starting at greenbelt
+[1026, 220], [1000, 253], [975, 280], [944, 305], [822, 380], [786, 417], [819, 455], [858, 496], [858, 542], [856, 640], [858, 712],
+//green only waterfront to branch
+ [907, 835], [943, 835], [1005, 859], [1032, 883], [1065, 900], [1112, 895], [1140, 923], [1167, 952],
+//yellow and blue starting at pentagon
+[656, 861], [656, 917], [681, 969], [728, 996], [728, 1036], [733, 1084], [548, 1125], [492, 1200],
+//yellow eisenhower to huntington
+[742, 1145], [742, 1197],
+//arlington cemetery
+[594, 766],
+//silver oange and blue from east falls church to stadium-armory
+[328, 643], [369, 644], [401, 644], [433, 644], [464, 644], [516, 593], [628, 533], [665, 533], [730, 530], [766, 642], [766, 672], [909, 713], [957, 713], [1002, 705], [1026, 677], [1077, 670],
+//blue and silver benning to largo
+[1206, 681], [1240, 681], [1273, 681], [1305, 680], [1340, 680],
+//orange vienna, dun, west falls
+[179, 634], [225, 634], [266, 634],
+//orange minnesota to new carrlton
+[1157, 638], [1188, 608], [1215, 577], [1241, 555], [1270, 526],
+//silver wiehle to mclean
+[182, 515], [200, 541], [224, 556], [249, 584], [269, 606]
+];
+
+    var margin =
+    {top: 0, right: 0, bottom: 0, left: 0}, width = 1400, height = 1300;
 
     var x = d3.scale.linear()
-              .domain([0, d3.max(data, function(d) { return d[0]; })])
-              .range([ 0, width ]);
 
     var y = d3.scale.linear()
-    	      .domain([0, d3.max(data, function(d) { return d[1]; })])
-    	      .range([ height, 0 ]);
 
     var chart = d3.select('body')
 	.append('svg:svg')
@@ -22,30 +46,6 @@ var data = [[5,3], [10,17], [15,4], [2,8]];
 	.attr('class', 'chart')
 
     var main = chart.append('g')
-	.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-	.attr('width', width)
-	.attr('height', height)
-	.attr('class', 'main')
-
-    // draw the x axis
-    var xAxis = d3.svg.axis()
-	.scale(x)
-	.orient('bottom');
-
-    main.append('g')
-	.attr('transform', 'translate(0,' + height + ')')
-	.attr('class', 'main axis date')
-	.call(xAxis);
-
-    // draw the y axis
-    var yAxis = d3.svg.axis()
-	.scale(y)
-	.orient('left');
-
-    main.append('g')
-	.attr('transform', 'translate(0,0)')
-	.attr('class', 'main axis date')
-	.call(yAxis);
 
     var g = main.append("svg:g");
 
@@ -55,7 +55,5 @@ var data = [[5,3], [10,17], [15,4], [2,8]];
           .attr("cx", function (d,i) { return x(d[0]); } )
           .attr("cy", function (d) { return y(d[1]); } )
           .attr("r", 8);
-});
 
-// JSONData = [
-// [679,829],[180,767],[421,1060],[798,1192],[947,983],[269,648],[903,456],[401,637],[178,647],[632,878],[548,140],[976,713],[821,826],[246,697],[388,1092],[579,907],[811,1025],[1137,348],[1074,608],[120,744],[1063,366],[762,605],[798,1113],[856,784],[321,1165],[513,687],[731,269],[356,1129],[976,799],[974,1014],[1022,599],[654,350],[657,414],[975,753],[1267,758],[1109,376],[939,439],[855,740],[1304,597],[1158,645],[766,688],[490,991],[728,751],[269,670],[1340,598],[1239,728],[857,546],[732,177],[916,685],[742,62],[455,1025],[224,721],[1029,1068],[798,1234],[821,908],[856,689],[557,922],[492,64],[897,934],[798,1155],[628,752],[764,641],[908,546],[633,749],[689,799],[742,121],[999,572],[325,636],[699,796],[223,648],[1184,670],[683,299],[465,635],[1029,387],[786,869],[1003,1040],[655,852],[432,637],[1212,700],[956,564],[1238,601],[976,837],[1165,317],[732,229],[523,956],[1205,601],[368,635],[589,505],[857,639],[1005,411],[1273,597]]
+});
