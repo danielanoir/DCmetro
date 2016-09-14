@@ -42,7 +42,7 @@ function getSqlData(callback) {
     json = JSON.parse(data);
     callback(null, json)
     data = "";
-    console.log('rowCount: ' + rowCount);
+    // console.log('rowCount: ' + rowCount);
     connection.release();
   });
   request.on('row', function(columns) {

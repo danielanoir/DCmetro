@@ -1,7 +1,7 @@
 $(function () {
 
   $.ajax({
-    url: "http://localhost:5000/coordinates",
+    url: "http://localhost:5000/index",
     success: function(response){
       console.log(response);
       },
