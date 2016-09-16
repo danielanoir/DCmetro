@@ -5,9 +5,7 @@ refreshData(origIdDefault);
 
 function refreshData(origId) {
 
-d3.select("svg").remove();
-
-var ajaxURL = "http://localhost:5000/stations/" + origId
+var ajaxURL = "http://localhost:5000/stations/" + origId;
 $.ajax({
   url: ajaxURL,
   // data: {origId: origId},
@@ -20,6 +18,8 @@ $.ajax({
 var stations = [];
 
 function initializePage (stationJSON) {
+  d3.select("svg").remove();
+
   for (var topLevel in stationJSON) {
     for (var objectKey in stationJSON[topLevel]) {
     stations.push(stationJSON[topLevel][objectKey].Station);
@@ -37,9 +37,9 @@ function initializePage (stationJSON) {
     .enter()
     .append("circle")
     .on("click", function(d) {
-      d3.select(".selected").classed("selected", false);
-      d3.select(this).classed("selected", true);
       refreshData(d.id);
+      // d3.select(".selected").classed("selected", false);
+      // d3.select(this).classed("selected", true);
       console.log(d.id);
     });
 
@@ -47,6 +47,9 @@ function initializePage (stationJSON) {
     .attr("id", function(d) { return d.id; })
     .attr("cx", function(d) { return d.coordX; })
     .attr("cy", function(d) { return d.coordY; })
+    .attr("class", function(d) {
+      if (d.id == origId) {return "selected";} else {return "";}
+    })
     // .append("title").text(function(d) { return d.name; });
     .append("title").text(function(d) {
       return "$" + d.fareOff.toFixed(2).toString() + " off-peak"
@@ -94,15 +97,11 @@ function initializePage (stationJSON) {
         return d.coordY + s; })
       .attr("text-anchor", "center")
       .text(function (d) { return d.name; });
+
 }
 }
 });
 
-// var test = $("#82").attr("cx");
-// console.log(test);
-// $("#82").attr("cx", 666);
-// var test2 = $("#82").attr("cx");
-// console.log(test2);
 
 // function printMousePos(event) {
 //   document.body.textContent =
