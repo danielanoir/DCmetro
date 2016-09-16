@@ -5,8 +5,8 @@ var config = require('../config/uber_config');
 var ConnectionPool = require('tedious-connection-pool');
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
-var data = new String();
-var json = new Object();
+var data = "";
+var json = {};
 
 var poolConfig = {
   min: 2,
@@ -25,22 +25,21 @@ pool.acquire(function(err, connection) {
     return;
   }
 
-  app.get("/coordinates", function(req, res){
-          getSqlData(function(err, json) {
+  app.get("/stations", function(req, res){
+        getSqlData(function(err, json) {
         res.send(json);
       });
   });
 
 function getSqlData(callback) {
-  var sql = 'select station, x, y from mtr.coordinates for json path'
+  var sql = 'mtr.getStations'
   var request = new Request(sql, function(err, rowCount) {
     if (err) {
       return callback(err);
     }
     json = JSON.parse(data);
-    callback(null, json)
+    callback(null, json);
     data = "";
-    // console.log('rowCount: ' + rowCount);
     connection.release();
   });
   request.on('row', function(columns) {
@@ -51,6 +50,7 @@ function getSqlData(callback) {
   connection.execSql(request);
   }
 });
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
