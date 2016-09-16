@@ -25,14 +25,15 @@ pool.acquire(function(err, connection) {
     return;
   }
 
-  app.get("/stations", function(req, res){
-        getSqlData(function(err, json) {
+  app.get("/stations/:origId", function(req, res){
+        var origId = req.params.origId;
+        getSqlData(origId, function(err, json) {
         res.send(json);
       });
   });
 
-function getSqlData(callback) {
-  var sql = 'mtr.getStations'
+function getSqlData(origId, callback) {
+  var sql = 'mtr.getStations';
   var request = new Request(sql, function(err, rowCount) {
     if (err) {
       return callback(err);
@@ -47,7 +48,8 @@ function getSqlData(callback) {
           data += column.value;
       });
     });
-  connection.execSql(request);
+  request.addParameter('orig_id', TYPES.Int, origId);
+  connection.callProcedure(request);
   }
 });
 
