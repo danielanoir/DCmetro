@@ -1,6 +1,14 @@
 #mapSpace {
   background-image: url("metromap.jpg");
 }
+
+h1 {
+  color: #27383D;
+}
+
+h2 {
+  color: #27383D;
+}
 text {
 font: 1em sans-serif;
 color: #27383D;
