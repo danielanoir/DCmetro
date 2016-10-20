@@ -92,6 +92,7 @@ function initializePage (stationJSON) {
           case 83: r = -110; break;
           case 22: r = -110; break;
           case 86: r = -110; break;
+          case 10: r = -50; break;
         }
         return d.coordX + r; })
       .attr("y", function(d) {
