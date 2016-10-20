@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var path = require('path');
 var http = require('http').Server(app);
 var config = require('../config/uber_config');
 var ConnectionPool = require('tedious-connection-pool');
@@ -24,6 +25,10 @@ pool.acquire(function(err, connection) {
     console.err(err);
     return;
   }
+
+  app.get('/', function(req, res) {
+      res.sendFile(path.join(__dirname + '/index.html'));
+  });
 
   app.get("/stations/:origId", function(req, res){
         var origId = req.params.origId;
@@ -60,6 +65,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-http.listen(5000, function() {
+http.listen(process.env.PORT || 5000, function() {
   console.log("listening on 5000");
 });
