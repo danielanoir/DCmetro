@@ -30,6 +30,14 @@ pool.acquire(function(err, connection) {
       res.sendFile(path.join(__dirname + '/index.html'));
   });
 
+  app.get('/map.js', function(req, res) {
+      res.sendFile(path.join(__dirname + '/map.js'));
+  });
+
+  app.get('/style.css', function(req, res) {
+      res.sendFile(path.join(__dirname + '/style.css'));
+  });
+
   app.get("/stations/:origId", function(req, res){
         var origId = req.params.origId;
         getSqlData(origId, function(err, json) {
