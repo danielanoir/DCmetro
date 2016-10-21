@@ -30,6 +30,10 @@ pool.acquire(function(err, connection) {
       res.sendFile(path.join(__dirname + '/index.html'));
   });
 
+  app.get('/metromap.jpg', function(req, res) {
+      res.sendFile(path.join(__dirname + '/metromap.jpg'));
+  });
+
   app.get('/map.js', function(req, res) {
       res.sendFile(path.join(__dirname + '/map.js'));
   });
