@@ -5,7 +5,7 @@ refreshData(origIdDefault);
 
 function refreshData(origId) {
 
-var ajaxURL = "http://localhost:5000/stations/" + origId;
+var ajaxURL = "stations/" + origId;
 $.ajax({
   url: ajaxURL,
   success: function(response){

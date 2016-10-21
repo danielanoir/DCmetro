@@ -73,6 +73,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-http.listen(process.env.PORT, function() {
-  console.log("listening on heroku port");
+http.listen(process.env.PORT || 5000, function() {
+  console.log("listening");
 });
