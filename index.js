@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-// var http = require('http').Server(app);
+var http = require('http').Server(app);
 var config = require('./config/uber_config');
 var ConnectionPool = require('tedious-connection-pool');
 var Request = require('tedious').Request;
@@ -73,6 +73,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-// http.listen(process.env.PORT || 5000, function() {
-//   console.log("listening on 5000");
+// http.listen(process.env.PORT, function() {
+//   // console.log("listening on 5000");
 // });
