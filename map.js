@@ -11,6 +11,8 @@ $.ajax({
   success: function(response){
     initializePage(response);
     },
+    error: function (xhr) {
+    },
   dataType: "json"
 });
 
