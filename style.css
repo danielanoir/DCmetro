@@ -9,7 +9,12 @@
   padding: 50px;
   background-color: #d2d7dd;
 }
-
+h1 {
+  font-size: 25px;
+}
+h2 {
+  font-size: 18px;
+}
 
 text {
 font: 1em sans-serif;
