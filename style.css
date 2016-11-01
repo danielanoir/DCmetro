@@ -6,20 +6,20 @@
 }
 
 .header {
-  color: #27383D;
+  color: #3d3d3d;
   z-index: 1;
-  position: fixed;
+  /*position: fixed;*/
   width: 100%;
   font-family: 'Raleway', sans-serif;
-  border-bottom: solid #808389 1px;
-  background-color: #f4f6f9;
+  border-bottom: solid #dbdbdb 2px;
+  background-color: #f4f4f4;
   margin: -10px;
-  padding: 20px;
+  padding: 10px;
 }
-h1 {
+.heading {
   font-size: 25px;
 }
-h2 {
+.directions {
   font-size: 18px;
 }
 
