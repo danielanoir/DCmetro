@@ -1,5 +1,6 @@
 #mapSpace {
   background-image: url("metromap.jpg");
+  margin: 50px;
 }
 
 .header {
@@ -7,7 +8,8 @@
   font-family: 'Raleway', sans-serif;
   border: solid #808389 1px;
   padding: 50px;
-  background-color: #d2d7dd;
+  margin: 20px;
+  background-color: #f4f6f9;
 }
 h1 {
   font-size: 25px;
