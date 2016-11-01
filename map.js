@@ -116,8 +116,8 @@ function initializePage (stationJSON) {
           default: s = 0; break;
         }
         return d.coordY + s; })
-      .attr("text-anchor", "center")
-      .text(function (d) { return d.name; });
+      // .attr("text-anchor", "center")
+      // .text(function (d) { return d.name; });
 
 }
 }
