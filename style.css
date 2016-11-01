@@ -5,10 +5,14 @@
 
 .header {
   color: #27383D;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
   font-family: 'Raleway', sans-serif;
-  border: solid #808389 1px;
-  padding: 50px;
+  border-bottom: solid #808389 1px;
   background-color: #f4f6f9;
+  margin: -10px;
+  padding: 20px;
 }
 h1 {
   font-size: 25px;
