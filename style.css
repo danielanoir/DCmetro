@@ -4,10 +4,9 @@
 
 .header {
   color: #27383D;
-  /*text-align: center;*/
   font-family: 'Raleway', sans-serif;
-  border: solid black 1px;
-  padding: 30px;
+  border: solid #808389 1px;
+  padding: 50px;
   background-color: #d2d7dd;
 }
 
