@@ -1,6 +1,8 @@
 #mapSpace {
   background-image: url("metromap.jpg");
-  margin: 0 auto;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .header {
