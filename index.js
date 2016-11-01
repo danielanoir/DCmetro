@@ -34,6 +34,10 @@ pool.acquire(function(err, connection) {
       res.sendFile(path.join(__dirname + '/metromap.jpg'));
   });
 
+  app.get('/favicon.ico', function(req, res) {
+      res.sendFile(path.join(__dirname + '/favicon.ico'));
+  });
+
   app.get('/map.js', function(req, res) {
       res.sendFile(path.join(__dirname + '/map.js'));
   });
