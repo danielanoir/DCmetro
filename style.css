@@ -6,7 +6,7 @@
 }
 
 .header {
-  color: #3d3d3d;
+  color: #757575;
   z-index: 1;
   position: fixed;
   width: 100%;
@@ -18,9 +18,12 @@
 }
 .heading {
   font-size: 25px;
+  margin: 10px;
 }
 .directions {
   font-size: 18px;
+  margin: 10px;
+
 }
 
 text {
