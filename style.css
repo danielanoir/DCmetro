@@ -2,13 +2,16 @@
   background-image: url("metromap.jpg");
 }
 
-h1 {
+.header {
   color: #27383D;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  border: solid black 1px;
+  padding: 30px;
+  background-color: #d2d7dd;
 }
 
-h2 {
-  color: #27383D;
-}
+
 text {
 font: 1em sans-serif;
 color: #27383D;
