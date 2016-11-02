@@ -81,6 +81,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-http.listen(process.env.PORT || 5000, function() {
+http.listen(process.env.PORT, function() {
   console.log("listening");
 });
