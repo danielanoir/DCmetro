@@ -1,0 +1,17 @@
+{
+  "name": "metro",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Daniela Noir <daniela@danielanoir.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/danielanoir/uber",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
