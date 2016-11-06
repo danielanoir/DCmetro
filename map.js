@@ -48,6 +48,7 @@ function initializePage (stationJSON) {
     .attr("id", function(d) { return d.id; })
     .attr("cx", function(d) { return d.coordX; })
     .attr("cy", function(d) { return d.coordY; })
+    .attr("r", 16)
     .attr("class", function(d) {
       if (d.id == origId) {return "selected";} else {return "";}
     })
