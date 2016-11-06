@@ -49,7 +49,7 @@ function initializePage (stationJSON) {
     .attr("cx", function(d) { return d.coordX; })
     .attr("cy", function(d) { return d.coordY; })
     .attr("class", function(d) {
-      if (d.id == origId) {return "selected";} else {return "";}
+      if (d.id == origId) {return "selected";} else {return "copyCircle";}
     })
     // .append("title").text(function(d) { return d.name; });
     .append("title").text(function(d) {

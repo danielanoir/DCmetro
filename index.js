@@ -69,7 +69,7 @@ function getSqlData(origId, callback) {
           data += column.value;
       });
     });
-  request.addParameter('orig_id', TYPES.Int, origId);
+  request.addParameter('orig_id ', TYPES.Int, origId);
   connection.callProcedure(request);
   }
 });
