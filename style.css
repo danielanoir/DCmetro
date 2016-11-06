@@ -34,16 +34,17 @@ color: #27383D;
 circle {
 fill: black;
 opacity: 0.7;
-r: 16px;
+/*r: 16;*/
 }
 circle:hover {
   opacity: .8;
   /*fill: #FA0265;*/
-  r: 23;
+  /*r: 23;*/
+  border: solid #FA0265;
 }
 
 .selected {
   fill: #FA0265;
   opacity: .8;
-  r: 23;
+  /*r: 23;*/
 }
