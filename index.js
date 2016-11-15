@@ -9,6 +9,7 @@ var TYPES = require('tedious').TYPES;
 var data = "";
 var json = {};
 
+
 var poolConfig = {
   min: 2,
   max: 4,
