@@ -9,11 +9,13 @@ var TYPES = require('tedious').TYPES;
 var data = "";
 var json = {};
 
+
 var poolConfig = {
   min: 2,
   max: 4,
   log: true
 };
+
 
 var pool = new ConnectionPool(poolConfig, config.db);
 pool.on('error', function(err) {
