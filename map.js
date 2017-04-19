@@ -133,7 +133,7 @@ function herokuErrorMessage() {
     console.log($("#mapSpace").width());
   } else {
     $("#herokuFail").show();
-    console.log("#mapSpace").width());
+    console.log($("#mapSpace").width());
   }
 }
 herokuErrorMessage();
