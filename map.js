@@ -124,9 +124,9 @@ function initializePage (stationJSON) {
 }
 }
 
+});
 
-
-  //error message if Heroku doesn't load:
+//error message if Heroku doesn't load:
 function herokuErrorMessage() {
   if ($("#mapSpace").width() > 1){
     $("#herokuFail").hide();
@@ -137,9 +137,6 @@ function herokuErrorMessage() {
   }
 }
 herokuErrorMessage();
-
-});
-
 
 // function printMousePos(event) {
 //   document.body.textContent =
