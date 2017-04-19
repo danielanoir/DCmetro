@@ -130,10 +130,10 @@ function initializePage (stationJSON) {
 function herokuErrorMessage() {
   if ($("#mapSpace").width() > 1){
     $("#herokuFail").hide();
-    console.log("width is not null");
+    console.log($("#mapSpace").width());
   } else {
     $("#herokuFail").show();
-    console.log("width is null");
+    console.log("#mapSpace").width());
   }
 }
 herokuErrorMessage();
