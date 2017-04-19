@@ -1,18 +1,6 @@
 
 $(document).ready(function() {
 
-  //error message if Heroku doesn't load:
-function herokuErrorMessage() {
-  if ($("#mapSpace").width() > 1){
-    $("#herokuFail").hide();
-    console.log("width is not null");
-  } else {
-    $("#herokuFail").show();
-    console.log("width is null");
-  }
-}
-herokuErrorMessage();
-
 var origIdDefault = 51;
 refreshData(origIdDefault);
 
@@ -135,6 +123,21 @@ function initializePage (stationJSON) {
 
 }
 }
+
+
+
+  //error message if Heroku doesn't load:
+function herokuErrorMessage() {
+  if ($("#mapSpace").width() > 1){
+    $("#herokuFail").hide();
+    console.log("width is not null");
+  } else {
+    $("#herokuFail").show();
+    console.log("width is null");
+  }
+}
+herokuErrorMessage();
+
 });
 
 
