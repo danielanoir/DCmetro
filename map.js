@@ -1,11 +1,11 @@
-$("#herokuFail").hide();
-
 
 $(document).ready(function() {
 
   //error message if Heroku doesn't load:
 if ($("#mapSpace").width() === null) {
   $("#herokuFail").show();
+} else {
+  $("#herokuFail").hide();
 }
 
 var origIdDefault = 51;
