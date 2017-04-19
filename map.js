@@ -2,11 +2,16 @@
 $(document).ready(function() {
 
   //error message if Heroku doesn't load:
-if ($("#mapSpace").width() === null) {
-  $("#herokuFail").show();
-} else {
-  $("#herokuFail").hide();
+function herokuErrorMessage() {
+  if ($("#mapSpace").width() === null) {
+    $("#herokuFail").show();
+    console.log("width is null");
+  } else {
+    $("#herokuFail").hide();
+    console.log("width is not null");
+  }
 }
+herokuErrorMessage();
 
 var origIdDefault = 51;
 refreshData(origIdDefault);
