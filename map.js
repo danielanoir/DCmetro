@@ -3,8 +3,10 @@ $("#herokuFail").hide();
 
 $(document).ready(function() {
 
-//error message if Heroku doesn't load:
-$("#herokuFail").show();
+  //error message if Heroku doesn't load:
+if ($("#mapSpace").width() === null) {
+  $("#herokuFail").show();
+}
 
 var origIdDefault = 51;
 refreshData(origIdDefault);

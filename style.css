@@ -27,7 +27,6 @@
 }
 
 #herokuFail {
-  z-index: -1;
   color: orange;
   font-family: 'Raleway', sans-serif;
   font-size: 25px;
