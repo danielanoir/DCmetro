@@ -3,10 +3,10 @@ $(document).ready(function() {
 
   //error message if Heroku doesn't load:
 function herokuErrorMessage() {
-  if ($("#mapSpace").width() === null) {
+  if ($("#mapSpace").width() == null) {
     $("#herokuFail").show();
     console.log("width is null");
-  } else {
+  } else if ($("#mapSpace").width() == 1400){
     $("#herokuFail").hide();
     console.log("width is not null");
   }
