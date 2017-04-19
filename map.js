@@ -1,4 +1,10 @@
+$("#herokuFail").hide();
+
+
 $(document).ready(function() {
+
+//error message if Heroku doesn't load:
+$("#herokuFail").show();
 
 var origIdDefault = 51;
 refreshData(origIdDefault);
