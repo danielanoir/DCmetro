@@ -1,15 +1,34 @@
+
 $(document).ready(function() {
+
+  //error message if Heroku doesn't load:
+  function herokuErrorMessage() {
+    if ($("#mapSpace").width() > 1){
+      $("#herokuFail").hide();
+      console.log($("#mapSpace").width());
+    } else {
+      $("#herokuFail").show();
+      console.log($("#mapSpace").width());
+    }
+  }
+  herokuErrorMessage();
+
+
+
+
 
 var origIdDefault = 51;
 refreshData(origIdDefault);
 
 function refreshData(origId) {
 
-var ajaxURL = "http://localhost:5000/stations/" + origId;
+var ajaxURL = "stations/" + origId;
 $.ajax({
   url: ajaxURL,
   success: function(response){
     initializePage(response);
+    },
+    error: function (xhr) {
     },
   dataType: "json"
 });
@@ -46,6 +65,7 @@ function initializePage (stationJSON) {
     .attr("id", function(d) { return d.id; })
     .attr("cx", function(d) { return d.coordX; })
     .attr("cy", function(d) { return d.coordY; })
+    .attr("r", 16)
     .attr("class", function(d) {
       if (d.id == origId) {return "selected";} else {return "";}
     })
@@ -92,6 +112,7 @@ function initializePage (stationJSON) {
           case 83: r = -110; break;
           case 22: r = -110; break;
           case 86: r = -110; break;
+          case 10: r = -50; break;
         }
         return d.coordX + r; })
       .attr("y", function(d) {
@@ -113,13 +134,13 @@ function initializePage (stationJSON) {
           default: s = 0; break;
         }
         return d.coordY + s; })
-      .attr("text-anchor", "center")
-      .text(function (d) { return d.name; });
+      // .attr("text-anchor", "center")
+      // .text(function (d) { return d.name; });
 
 }
 }
+
 });
-
 
 // function printMousePos(event) {
 //   document.body.textContent =

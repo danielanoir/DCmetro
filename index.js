@@ -1,18 +1,21 @@
 var express = require('express');
 var app = express();
+var path = require('path');
 var http = require('http').Server(app);
-var config = require('../config/uber_config');
+var config = require('./config/uber_config');
 var ConnectionPool = require('tedious-connection-pool');
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 var data = "";
 var json = {};
 
+
 var poolConfig = {
   min: 2,
   max: 4,
   log: true
 };
+
 
 var pool = new ConnectionPool(poolConfig, config.db);
 pool.on('error', function(err) {
@@ -24,6 +27,26 @@ pool.acquire(function(err, connection) {
     console.err(err);
     return;
   }
+
+  app.get('/', function(req, res) {
+      res.sendFile(path.join(__dirname + '/index.html'));
+  });
+
+  app.get('/metromap.jpg', function(req, res) {
+      res.sendFile(path.join(__dirname + '/metromap.jpg'));
+  });
+
+  app.get('/favicon.png', function(req, res) {
+      res.sendFile(path.join(__dirname + '/favicon.png'));
+  });
+
+  app.get('/map.js', function(req, res) {
+      res.sendFile(path.join(__dirname + '/map.js'));
+  });
+
+  app.get('/style.css', function(req, res) {
+      res.sendFile(path.join(__dirname + '/style.css'));
+  });
 
   app.get("/stations/:origId", function(req, res){
         var origId = req.params.origId;
@@ -48,11 +71,10 @@ function getSqlData(origId, callback) {
           data += column.value;
       });
     });
-  request.addParameter('orig_id', TYPES.Int, origId);
+  request.addParameter('orig_id ', TYPES.Int, origId);
   connection.callProcedure(request);
   }
 });
-
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -60,6 +82,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-http.listen(5000, function() {
-  console.log("listening on 5000");
+http.listen(process.env.PORT, function() {
+  console.log("listening");
 });
